@@ -16,52 +16,105 @@
       </header>
       <div class="row">
         <div class="col-lg-6">
-          <div class="card">
-            <div class="card-header d-flex align-items-center">
-              <h4>Division Form</h4>
-            </div>
-            <div class="card-body">
-              <p>Enter the name of the division here.</p>
-              <form method="POST" action="{{ url('insert/division') }}">
-                @csrf
-                <div class="form-group">
-                  <label>Division</label>
-                  <input type="text" placeholder="Division Name" name="division" id ="division"  class="form-control rounded @error('division') is-invalid @enderror" required>
-                  @error('division')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                <h4>Class Form</h4>
                 </div>
-                <div class="form-group">
-                  <input type="submit" value="Upload Division" class="btn btn-primary">
+                <div class="card-body">
+                <p>Enter the Department here.</p>
+                    <form method="POST" action="{{ url('insert/department') }}">
+                        @csrf
+                        <div class="form-group">
+                        <label>department</label>
+                        <input type="text" placeholder="Department" name="department" id ="department"  class="form-control rounded @error('department') is-invalid @enderror" required>
+                        @error('department')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        </div>
+                        <div class="form-group">
+                        <input type="submit" value="Upload Department" class="btn btn-primary">
+                        </div>
+                    </form>
                 </div>
-              </form>
             </div>
-          </div>
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                <h4>Section Form</h4>
+                </div>
+                <div class="card-body">
+                <p>Enter the section here.</p>
+                    <form method="POST" action="{{ url('insert/section') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label>Department</label>
+                            <select name="cls_id" id="cls_id" class="form-control">
+                                <option value="">Select One</option>
+                                @foreach ($departments as $department )
+                                    <option value="{{ $department->id }}">{{ $department->department }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Course Code</label>
+                            <select name="crs_id" id="crs_id" class="form-control">
+                                <option value="">Select One</option>
+                                @foreach ($courses as $course )
+                                    <option value="{{ $course->id }}">{{ $course->course_code }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Section</label>
+                            <input type="text" placeholder="Section" name="section" id ="section"  class="form-control rounded @error('section ') is-invalid @enderror" required>
+                            @error('section')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                        <input type="submit" value="Upload Section" class="btn btn-primary">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="col-lg-6">
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h4>Horizontal Form</h4>
+              <h4>Upload Area</h4>
             </div>
             <div class="card-body">
-              <p>Lorem ipsum dolor sit amet consectetur.</p>
-              <form class="form-horizontal">
+              <p>Upload the area here</p>
+              <form class="form-horizontal" method="POST" action="{{ url('upload/course') }}">
+                @csrf
                 <div class="form-group row">
-                  <label class="col-sm-2">Email</label>
-                  <div class="col-sm-10">
-                    <input id="inputHorizontalSuccess" type="email" placeholder="Email Address" class="form-control form-control-success"><small class="form-text">Example help text that remains unchanged.</small>
-                  </div>
+                  <label>Department</label>
+                  <select name="dep_id" id="dep_id" class="form-control">
+                    <option value="">Select One</option>
+                    @foreach ($departments as $department )
+                        <option value="{{ $department->id }}">{{ $department->department }}</option>
+                    @endforeach
+                  </select>
+                </div>
+
+                <div class="form-group row">
+                    <label>Course Code</label>
+                    <input id="crs_code" name="crs_code" type="text" placeholder="Enter the course code" class="form-control rounded @error('crs_code') is-invalid @enderror" required>
+                        @error('crs_code')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                </div>
+
+                <div class="form-group row">
+                  <label>Course Name</label>
+                  <input id="crs_name" name="crs_name" type="text" placeholder="Enter the course name" class="form-control rounded @error('crs_name') is-invalid @enderror" required>
+                    @error('crs_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group row">
-                  <label class="col-sm-2">Password</label>
-                  <div class="col-sm-10">
-                    <input id="inputHorizontalWarning" type="password" placeholder="Pasword" class="form-control form-control-warning"><small class="form-text">Example help text that remains unchanged.</small>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-sm-10 offset-sm-2">
-                    <input type="submit" value="Signin" class="btn btn-primary">
-                  </div>
+                  {{-- <div class="offset-sm-2"> --}}
+                    <input type="submit" value="Upload" class="btn btn-primary">
+                  {{-- </div> --}}
                 </div>
               </form>
             </div>
@@ -70,20 +123,43 @@
         <div class="col-lg-8">
           <div class="card">
             <div class="card-header d-flex align-items-center">
-              <h4>Inline Form</h4>
+              <h4>School Form</h4>
             </div>
             <div class="card-body">
-              <form class="form-inline">
+              <form class="form-inline" method="POST" action="{{url('upload/school')}}">
+                @csrf
                 <div class="form-group">
-                  <label for="inlineFormInput" class="sr-only">Name</label>
-                  <input id="inlineFormInput" type="text" placeholder="Jane Doe" class="mr-3 form-control">
+                <label>Division</label>
+                <select name="div_id" id="div_id" class="mr-3 form-control">
+                    <option value="">Select One</option>
+                    {{-- @foreach ($divisions as $division )
+                        <option value="{{ $division->id }}">{{ $division->division }}</option>
+                    @endforeach --}}
+                </select>
                 </div>
                 <div class="form-group">
-                  <label for="inlineFormInputGroup" class="sr-only">Username</label>
-                  <input id="inlineFormInputGroup" type="text" placeholder="Username" class="mr-3 form-control form-control">
+                  <label for="inlineFormInputGroup">Board</label>
+                  <select name="board_id" id="board_id inlineFormInputGroup" class="mr-3 form-control form-control">
+                      <option value="">Select One</option>
+                      {{-- @foreach ($boards as $board )
+                          <option value="{{ $board->id }}">{{ $board->board }}</option>
+                      @endforeach --}}
+                  </select>
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="Submit" class="mr-3 btn btn-primary">
+                    <label for="inlineFormInputGroup">Area</label>
+                    <select name="area_id" id="area_id inlineFormInputGroup" class="mr-3 form-control form-control">
+                        <option value="">Select One</option>
+                        {{-- @foreach ($areas as $area)
+                            <option value="{{ $area->id }}">{{ $area->area }}</option>
+                        @endforeach --}}
+                    </select>
+                  </div>
+                <div class="form-group">
+                    <input id="inlineFormInputGroup school" type="text" name="school" placeholder="School Name" class="mr-3 form-control form-control">
+                </div>
+                <div class="form-group">
+                  <input type="submit" value="Submit" class="mt-3 btn btn-primary">
                 </div>
               </form>
             </div>
@@ -423,5 +499,35 @@
       </div>
     </div>
   </section>
+
+  <script>
+    $(document).ready(function() {
+           $('#division').on('change', function() {
+              var division = $(this).val();
+              if(division) {
+                  $.ajax({
+                      url: '/dropdown/'+division,
+                      type: "GET",
+                      data : {"_token":"{{ csrf_token() }}"},
+                      dataType: "json",
+                      success:function(data)
+                      {
+                        if(data){
+                           $('#area').empty();
+                           $('#area').append('<option hidden>Choose Course</option>');
+                           $.each(data, function(key, area){
+                               $('select[name="area"]').append('<option value="'+ key +'">' + area.area+ '</option>');
+                           });
+                       }else{
+                           $('#area').empty();
+                       }
+                    }
+                  });
+              }else{
+                $('#area').empty();
+              }
+           });
+           });
+</script>
 
 @endsection
