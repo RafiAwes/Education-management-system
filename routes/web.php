@@ -30,4 +30,10 @@ Route::get('/dropdown/{id}','uploadData@divisionDropDown');
 Route::post('upload/school','uploadData@uploadSchool');
 
 //student page
-Route::ger('/upload/new/student','studentController@uploadStudent');
+Route::get('/upload/new/student','studentController@uploadStudentPage');
+Route::post('admit/student','studentController@admitStudent');
+Route::get('/show/student/list','studentController@studentList');
+
+//list page
+Route::get('/show/department','listController@departmentList');
+Route::get('show/courses/of/this/department/{id}','listController@courseList');

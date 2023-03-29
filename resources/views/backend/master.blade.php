@@ -51,21 +51,23 @@
             <li><a href="/home"> <i class="icon-home"></i>Home</a></li>
             <li><a href="/upload/data"> <i class="icon-form"></i>Upload</a></li>
             <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Student </a>
-                <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                  <li><a href="/upload/new/student">Upload New Student</a></li>
-                  <li><a href="#">Student List</a></li>
-                  {{-- <li><a href="#">Page</a></li> --}}
-                </ul>
-              </li>
-            <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts</a></li>
-            <li class="active"><a href="tables.html"> <i class="icon-grid"></i>Tables</a></li>
-            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
-              <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
-                <li><a href="#">Page</a></li>
-              </ul>
+            <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li><a href="/upload/new/student">Upload New Student</a></li>
+                <li><a href="/show/student/list">Student List</a></li>
+                {{-- <li><a href="#">Page</a></li> --}}
+            </ul>
             </li>
+            {{-- table --}}
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-grid"></i>Table</a>
+                <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                    <li><a href="/show/department">Department</a></li>
+                    {{-- <li><a href="">Student List</a></li> --}}
+                    {{-- <li><a href="#">Page</a></li> --}}
+                </ul>
+            </li>
+
+
+           
             {{-- <li><a href="login.html"> <i class="icon-interface-windows"></i>Login page</a></li>
             <li> <a href="#"> <i class="icon-mail"></i>Demo
                     <div class="badge badge-warning">
@@ -122,6 +124,7 @@
     <script src="{{ url('/') }}/backend_assets/vendor/chart.js/Chart.min.js"></script>
     <script src="{{ url('/') }}/backend_assets/vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="{{ url('/') }}/backend_assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    @yield('footer_js')
     <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
     {!! Toastr::message() !!}
